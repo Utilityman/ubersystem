@@ -626,14 +626,12 @@ class Attendee(MagModel, TakesPaymentMixin):
         elif self.badge_type == ONE_DAY_BADGE:
             return state.get_oneday_price(registered)
         elif self.badge_type == FRIDAY_BADGE:
-            return 35
+            return 25
         elif self.badge_type == SATURDAY_BADGE:
-            return 50
+            return 30
         elif self.badge_type == SUNDAY_BADGE:
-            return 40
-        elif self.badge_type == YOUTH_BADGE:
             return 20
-        elif self.badge_type == KID_BADGE:
+        elif self.badge_type == YOUTH_BADGE:
             self.paid = NEED_NOT_PAY
             return 0
         else:
