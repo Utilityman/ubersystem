@@ -100,8 +100,7 @@ class State:
         opts = [(ATTENDEE_BADGE, '12+ Full Weekend Pass (${})'.format(self.BADGE_PRICE))]
         if ONE_DAYS_ENABLED:
             opts.append((ONE_DAY_BADGE,  '12+ Single Day Pass (${})'.format(self.ONEDAY_BADGE_PRICE)))
-        opts.append((YOUTH_BADGE,  '5-12 Full Weekend Pass($20)'))
-        opts.append((KID_BADGE,  'Under 5 Full Weekend Pass($0)'))
+        opts.append((YOUTH_BADGE,  '12 and under Full Weekend Pass ($20)'))
         return opts
 
     @property
