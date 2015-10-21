@@ -151,7 +151,7 @@ class Root:
         }
 
     def watchlist(self, session, attendee_id, watchlist_id=None, message='', **params):
-        attendee = session.attendee(attendee_id, allow_invalid=True)
+        attendee = session.attendee(attendee_id)
         if watchlist_id:
             watchlist_entry = session.watch_list(watchlist_id)
 
@@ -167,6 +167,7 @@ class Root:
             message = 'Watchlist entry updated'
         return {
             'attendee': attendee,
+            'watchlist_entries': listify(attendee.banned),
             'message': message
         }
 
