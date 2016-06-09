@@ -153,7 +153,11 @@
 <body>
 
     {% if c.PRE_CON %}
-        <div class="loader"><a class="loader_link" href="../static_views/slow_load.html" target="_blank"></a></div>
+        <div class="loader">
+            <a class="loader_link" href="../static_views/slow_load.html" target="_blank">
+
+            </a>
+        </div><!-- /loader -->
     {% endif %}
 
     {% block top_of_body_additional %}
@@ -167,16 +171,17 @@
         {% include "nav.html" %}
     {% endblock nav %}
 
-        {% block backlink %}
+    {% block breadnav %}
+    {% endblock breadnav %}
 
-        {% endblock backlink %}
+    {% block content %}
+    {% endblock content %}
 
-        {% block content %}{% endblock %}
+    {% block footer %}
+    {% endblock footer %}
 
     {% block scripts %}
-
         {% include "baseextra.html" %}
-
     {% endblock scripts %}
 
     {% if c.COLLECT_FULL_ADDRESS %}

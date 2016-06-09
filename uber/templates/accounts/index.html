@@ -1,81 +1,99 @@
 {% extends "base-admin.html" %}
-{% block title %}Accounts{% endblock %}
+
+{% block title %}
+    Accounts
+{% endblock title %}
+
 {% block content %}
 
-<ol class="breadcrumb">
-  <li><a href="../accounts/homepage">Home</a></li>
-  <li class="active">Accounts</li>
-</ol>
+<h3>
+    New Account
+</h3>
 
-<div class="panel panel-default">
-<div class="panel-heading"><h3>New Account</h3></div>
 <form id="new_admin" method="post" action="update" onsubmit="return check_passwords()" role="form" class="form-inline">
 <input type="hidden" name="id" value="None" />
 {% csrf_token %}
-<div class="form-group">
-    <label for="attendee_id" class="sr-only">Attendee</label>
-    <select class="form-control" id="attendee_id" name="attendee_id">
-        {% options all_attendees %}
-    </select>
-</div>
-<div class="form-group">
-    <div class="input-group input-group-sm">
-    <label for="password" class="sr-only">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Password" 
-       {% if not c.AT_THE_CON %}disabled{% endif %}>
-       {% if not c.AT_THE_CON %}
-           <span class="input-group-addon glyphicon glyphicon-ban-circle">
-           </span>
-       {% endif %}
-    </div>
-    <input type="password" class="form-control" id="check-password" name="check-password" placeholder="Re-enter Password"
+<ul>
+    <li>
+        <label for="attendee_id">Attendee</label>
+        <select id="attendee_id" name="attendee_id">
+            {% options all_attendees %}
+        </select>
+    </li>
+    <li>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"
            {% if not c.AT_THE_CON %}disabled{% endif %}>
-    </div>
-</div>
-<div class="form-group">
-    {% checkgroup AdminAccount.access %}
-</div>
-<button type="submit" class="btn btn-default">Create Account</button>
+           {% if not c.AT_THE_CON %}
+               <span class="input-group-addon glyphicon glyphicon-ban-circle">
+               </span>
+           {% endif %}
+    </li>
+    <li>
+        <label for="check-password">Re-enter Password</label>
+        <input type="password" class="form-control" id="check-password" name="check-password" {% if not c.AT_THE_CON %}disabled{% endif %}>
+    </li>
+    <li>
+        {% checkgroup AdminAccount.access %}
+    </li>
+        <li>
+            <button type="submit">
+                Create Account
+            </button>
+        </li>
+    </ul>
 </form>
-</div>
 
-<div class="panel panel-default">
-<div class="panel-heading"><h3>Existing Accounts</h3></div>
+<h3>
+    Existing Accounts
+</h3>
 
-<div class="table-responsive">
-<table class="table table-striped datatable">
-<thead><tr>
-    <th></th>
-    <th>Name</th>
-    <th>Email</th>
-    <th data-hide="phone">Access</th>
-</tr></thead>
-<tbody>
-{% for account in accounts %}
-    <tr id="{{ account.email|idize }}">
-        <td>
-            <div class="btn-group-vertical">
-                <button type="submit" class="btn btn-primary update-button"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th data-hide="phone">Access</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for account in accounts %}
+        <tr id="{{ account.email|idize }}">
+            <td data-order="{{ account.attendee.last_first }}" data-search="{{ account.attendee.last_first }}">
+                <a href="../registration/form?id={{ account.attendee.id }}">
+                    {{ account.attendee.last_first }}
+                </a>
+            </td>
+            <td>
+                <a href="mailto:{{ account.attendee.email }}">
+                    {{ account.attendee.email }}
+                </a>
+            </td>
+            <td>
+                <form class="form update-form" method="post" action="update">
+                    <input type="hidden" name="id" value="{{ account.id }}" />
+                    {% csrf_token %}
+                    {% checkgroup account.access %}
+                </form>
+            </td>
+            <td>
+                <button type="submit" class="update-button">
+                    Save
+                </button>
                 <form method="post" action="delete">
                     <input type="hidden" name="id" value="{{ account.id }}" />
-                    <button type="submit" type="button" class="btn btn-danger delete-button"><span class="glyphicon glyphicon-trash"></span></button>
+                    <button type="submit" type="button" class="delete-button">
+                        Delete
+                    </button>
                 </form>
-            </div>
-        </td>
-        <td data-order="{{ account.attendee.last_first }}" data-search="{{ account.attendee.last_first }}"> <nobr><a href="../registration/form?id={{ account.attendee.id }}">{{ account.attendee.last_first }}</a></nobr> </td>
-        <td> <a href="mailto:{{ account.attendee.email }}">{{ account.attendee.email }}</a> </td>
-        <td>
-            <form class="form update-form" method="post" action="update">
-                <input type="hidden" name="id" value="{{ account.id }}" />
-                {% csrf_token %}
-                <div class="form-group">{% checkgroup account.access %}</div>
-            </form>
-        </td>
-    </tr>
-{% endfor %}
-</tbody>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
 </table>
-</div>
+
 
 <script>
     function check_passwords() {
@@ -103,5 +121,4 @@ $(function() {
 });
 </script>
 
-</div>
-{% endblock %}
+{% endblock content%}
