@@ -1,28 +1,46 @@
 {% extends "base-admin.html" %}
-{% block title %}Department Checklist - {{ conf.name }}{% endblock %}
+
+{% block title %}
+    Department Checklist - {{ conf.name }}
+{% endblock title %}
+
 {% block content %}
 
-<h2>Department Checklist: {{ conf.name }}</h2>
+<h1>
+    Department Checklist: {{ conf.name }}
+</h1>
 
 {{ conf.description }}
 
-<table style="width:auto">
+<table>
 {% for dept, dept_name, heads in overview %}
-    <tr><td colspan="2"><h3>{{ dept_name }}</h3></td></tr>
+    <tr>
+        <td colspan="2">
+            <h3>
+                {{ dept_name }}
+            </h3>
+        </td>
+    </tr>
     {% for attendee, item in heads %}
         <tr>
-            <td valign="top">{{ attendee|form_link }}</td>
+            <td>
+                {{ attendee|form_link }}
+            </td>
             {% if attendee.admin_account %}
                 <td>
-                {% if item %}
-                    <b>Completed</b>
-                {% else %}
-                    <i>not complete</i>
-                {% endif %}
+                    {% if item %}
+                        Completed
+                    {% else %}
+                        not complete
+                    {% endif %}
                 </td>
-                <td>{{ item.comments|linebreaks }}</td>
+                <td>
+                    {{ item.comments|linebreaks }}
+                </td>
             {% else %}
-                <td colspan="2"><i>This dept head doesn't have an admin account.</i></td>
+                <td colspan="2">
+                    This dept head doesn't have an admin account.
+                </td>
             {% endif %}
         </tr>
     {% endfor %}
