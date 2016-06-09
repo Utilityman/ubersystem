@@ -3,8 +3,8 @@
 {% block title %}
     MPoint Uses
 {% endblock title %}
-{% block content %}
 
+{% block content %}
 <h1>
     M-Points Collected at Regdesk
 </h1>
@@ -27,7 +27,9 @@
         <td>${{ total }}</td>
         <td>
             {% if group %}
-                <a href="../groups/form?id={{ group.id }}">{{ group.name }}</a>
+                <a href="../groups/form?id={{ group.id }}">
+                    {{ group.name }}
+                </a>
             {% else %}
                 No Group
             {% endif %}
@@ -37,7 +39,9 @@
                     <li>
                         ${{ mpu.amount }} from 
                         {% if mpu.attendee %}
-                            <a href="../registration/form?id={{ mpu.attendee.id }}">{{ mpu.attendee.full_name }}</a>
+                            <a href="../registration/form?id={{ mpu.attendee.id }}">
+                                {{ mpu.attendee.full_name }}
+                            </a>
                         {% else %}
                             {{ mpu.identifier }}
                         {% endif %}
@@ -50,4 +54,4 @@
 {% endfor %}
 </table>
 
-{% endblock %}
+{% endblock content %}
