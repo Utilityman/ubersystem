@@ -1,10 +1,15 @@
 {% extends "base-admin.html" %}
-{% block title %}{{ c.EVENT_NAME }} server is being moved{% endblock %}
-{% block backlink %}{% endblock %}
+
+{% block title %}
+    {{ c.EVENT_NAME }} server is being moved
+{% endblock title %}
+
 {% block content %}
 
-<h2 style="color:red">The {{ c.EVENT_NAME }} registration/volunteer website is temporarily offline</h2>
+<h1>
+    The {{ c.EVENT_NAME }} registration/volunteer website is temporarily offline
+</h1>
 
-We'll be back online shortly, at which point you'll again be able to access the page you were trying to load.
+    We'll be back online shortly, at which point you'll again be able to access the page you were trying to load.
 
-{% endblock %}
+{% endblock content %}
