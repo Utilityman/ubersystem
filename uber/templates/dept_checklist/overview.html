@@ -12,24 +12,43 @@
 
 <ul>
     <li>
-        <img src="../static/images/x.png" /> Department head has missed deadline for this step
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-times-circle fa-stack-2x"></i>
+        </span>
+        Department head has missed deadline for this step
     </li>
     <li>
-        <img src="../static/images/warn.jpg" /> Deadline is approaching and step isn't yet complete
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-exclamation-triangle fa-stack-2x"></i>
+        </span>
+        Deadline is approaching and step isn't yet complete
     </li>
     <li>
-        <img src="../static/images/checkbox_checked.png" /> Department head has marked this step as complete
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+        </span>
+        Department head hasn't yet completed this step, but the deadline isn't close
     </li>
     <li>
-        <img src="../static/images/checkbox_unchecked.png" /> Department head hasn't yet completed this step, but the deadline isn't close
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-check fa-stack-1x"></i>
+        </span>
+        Department head has marked this step as complete
     </li>
 </ul>
 
 <table>
 <tr>
-    <th><div>Department Head</div></th>
+    <thead>
+        Department Head
+    </thead>
     {% for conf in checklist %}
-        <th><div><a href="item?slug={{ conf.slug }}">{{ conf.name }}</a></div></th>
+        <th>
+            <a href="item?slug={{ conf.slug }}">
+                {{ conf.name }}
+            </a>
+        </th>
     {% endfor %}
 </tr>
     <tbody>
