@@ -1,3 +1,10 @@
+WIP for enormous UX project.
+======
+
+Current goal: Remove all inline CSS, styling divs, inline JS.
+Basically project make everything ugly and simple.
+
+
 The UberSystem
 =======
 
