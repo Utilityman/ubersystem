@@ -1,20 +1,24 @@
 {% extends "base-admin.html" %}
-{% block title %}Developer Utility - Git info{% endblock %}
+
+{% block title %}
+    Developer Utility - Git info
+{% endblock title %}
+
 {% block content %}
 
-<h1>Git info</h1>
-For local repository deployed on this server<br/>
+<h1>
+    Git Info
+</h1>
+
+<h2>
+    For local repository deployed on this server
+</h2>
 
 <pre>
-
-<b>Current git branch:</b> {{ git_branch_name|linebreaksbr }}
-<b>Current commit SHA:</b> {{ git_current_sha|linebreaksbr }}
-<b>Last commit message:</b>
-{{ last_commit_log|linebreaksbr }}
-
-<b>Local 'git status':</b>
-{{ git_status|linebreaksbr }}
-
+    <strong>Current git branch:</strong> {{ git_branch_name|linebreaksbr }}
+    <strong>Current commit SHA:</strong> {{ git_current_sha|linebreaksbr }}
+    <strong>Last commit message:</strong> {{ last_commit_log|linebreaksbr }}
+    <strong>Local 'git status':</strong>{{ git_status|linebreaksbr }}
 </pre>
 
-{% endblock %}
+{% endblock content %}
