@@ -1,0 +1,35 @@
+<nav role="navigation">
+
+    <ul>
+        <li>
+            <a href="https://github.com/magfest/ubersystem/issues">
+                Bug Report
+            </a>
+        </li>
+        <li>
+            <a href="../accounts/sitemap">
+                Site Map
+            </a>
+        </li>
+        <li>
+            Logged in as: {{ c.CURRENT_ADMIN.first_name }} {{ c.CURRENT_ADMIN.last_name }}
+        </li>
+    </ul>
+
+    Account Settings
+
+        <ul>
+            <li>
+                <a href="../accounts/change_password">
+                    Change Password
+                </a>
+            </li>
+            <li>
+                <a href="../accounts/logout">
+                    Logout
+                </a>
+            </li>
+        </ul>
+
+
+</nav>
