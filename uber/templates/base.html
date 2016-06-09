@@ -1,48 +1,25 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
-    <!--[if lte IE 7]>
-        <script>
-            if (!document.documentMode) { //if documentMode exists, this is a later IE in compatibility mode
-                alert("This website requires IE 8 or later.");
-            }
-        </script>
-    <![endif]-->
-    <title>{{ c.EVENT_NAME }} - {% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+
+    <title>
+        {{ c.EVENT_NAME }} - {% block title %}{% endblock %}
+    </title>
+
     <link rel="icon" href="../static/images/favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="../static/deps/combined.css" />
+
+    <!--<link rel="stylesheet" href="../static/deps/combined.css" />
+    <link rel="stylesheet" href="../static/theme/style.css">-->
+
     <script type="text/javascript" src="../static/deps/combined.js"></script>
     <script src="../common.js" type="text/javascript"></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     {% block sectionStyle %}{% endblock %}
     {% block additional_styles %}{% endblock %}
-    <style>
-        .navbar {
-            margin-bottom: 0px;
-        }
-        .loader_link {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60%;
-            height: 25%;
-            z-index: 9999;
-            background: rgb(249,249,249) url('../static/images/loading.gif?{% random_hash %}') no-repeat center center;
-            background-size: 50%;
-        }
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9998;
-            background: rgb(249,249,249);
-        }
-    </style>
+
     <script>
         var DISABLE_STRIPE_BUTTONS_ON_CLICK = true;
         var MENU = [
@@ -172,23 +149,21 @@
     </script>
     {% block head_additional %}{% endblock %}
 </head>
+
 <body>
     {% if c.PRE_CON %}
         <div class="loader"><a class="loader_link" href="../static_views/slow_load.html" target="_blank"></a></div>
     {% endif %}
     {% block top_of_body_additional %}{% endblock %}
-    <div id="mainContainer" class="container-fluid">
+
+    {% block header %}
+        {% include "../static_views/header.html" %}
+    {% endblock header %}
+
         {% block backlink %}
-            <nav class="navbar navbar-default navbar-static-top" role="navigation">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand" href="../accounts/homepage">{{ c.EVENT_NAME }}</a>
+            <nav role="navigation">
+
+
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="main-navbar-collapse-1">
@@ -209,17 +184,13 @@
                 </div>
             </nav>
         {% endblock %}
+
         {% block header %}{% endblock %}
         {% block content %}{% endblock %}
         <div id="bottomAnchor" /></div>
     </div>
     {% block scripts %}
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+
         {% include "baseextra.html" %}
     {% endblock %}
     {% if c.COLLECT_FULL_ADDRESS %}
