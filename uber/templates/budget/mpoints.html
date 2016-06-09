@@ -1,17 +1,29 @@
 {% extends "base-admin.html" %}
-{% block title %}MPoint Uses{% endblock %}
+
+{% block title %}
+    MPoint Uses
+{% endblock title %}
 {% block content %}
 
-<h2> M-Points Collected at Regdesk </h2>
+<h1>
+    M-Points Collected at Regdesk
+</h1>
 
-<table class="list">
-<tr class="header">
-    <td>Total</td>
-    <td>Group</td>
-    <td>Breakdown</td>
-</tr>
-{% for total,group,mpus in all %}
-    <tr bgcolor="{% cycle #ffffff,#eeeeee %}">
+<table>
+    <thead>
+        <td>
+            Total
+        </td>
+        <td>
+            Group
+        </td>
+        <td>
+            Breakdown
+        </td>
+    </thead>
+
+    {% for total,group,mpus in all %}
+    <tr>
         <td>${{ total }}</td>
         <td>
             {% if group %}
@@ -19,7 +31,7 @@
             {% else %}
                 No Group
             {% endif %}
-        <td style="text-align:left">
+        <td>
             <ul>
                 {% for mpu in mpus %}
                     <li>
