@@ -1,5 +1,19 @@
-<nav role="navigation">
+<ul id="account_drop" class="dropdown-content">
+  <li>
+        <a href="../accounts/change_password">
+            Change Password
+        </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a href="../accounts/logout">
+            Logout
+        </a>
+    </li>
+</ul>
 
+<nav role="navigation">
+<div class="nav-wrapper">
     <ul class="left">
         <li>
             <a href="https://github.com/magfest/ubersystem/issues">
@@ -16,18 +30,10 @@
 
     <ul class="right">
         <li>
-            Logged in as: {{ c.CURRENT_ADMIN.first_name }} {{ c.CURRENT_ADMIN.last_name }}
-        </li>
-        <li>
-            <a href="../accounts/change_password">
-                Change Password
-            </a>
-        </li>
-        <li>
-            <a href="../accounts/logout">
-                Logout
+            <a class="dropdown-button" href="#!" data-activates="account_drop">
+                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?s=40" alt=""> {{ c.CURRENT_ADMIN.first_name }} {{ c.CURRENT_ADMIN.last_name }}
             </a>
         </li>
     </ul>
-
+</div>
 </nav>

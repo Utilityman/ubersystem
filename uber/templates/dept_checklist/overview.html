@@ -38,19 +38,22 @@
     </li>
 </ul>
 
-<table>
-<tr>
+<table class="striped">
     <thead>
-        Department Head
+        <tr>
+            <th>
+                Department Head
+            </th>
+            {% for conf in checklist %}
+                <th>
+                    <a href="item?slug={{ conf.slug }}">
+                        {{ conf.name }}
+                    </a>
+                </th>
+            {% endfor %}
+        </tr>
     </thead>
-    {% for conf in checklist %}
-        <th>
-            <a href="item?slug={{ conf.slug }}">
-                {{ conf.name }}
-            </a>
-        </th>
-    {% endfor %}
-</tr>
+
     <tbody>
     {% for dept, dept_name, heads in overview %}
         <tr>
@@ -60,18 +63,27 @@
         </tr>
         {% for attendee, items in heads %}
             <tr>
-                <td class="dept-head" title="{{ attendee.email }} / {{ attendee.cellphone }}">{{ attendee|form_link }}</td>
+                <td title="{{ attendee.email }} / {{ attendee.cellphone }}">{{ attendee|form_link }}</td>
                 {% if attendee.admin_account %}
                     {% for item in items %}
                         <td>
                             {% if item.done %}
-                                <img title="{{ item.name }}" src="../static/images/checkbox_checked.png" />
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-square-o fa-stack-2x"></i>
+                                  <i class="fa fa-check fa-stack-1x"></i>
+                                </span>
                             {% elif item.approaching %}
-                                <img title="{{ item.name }}" src="../static/images/warn.jpg" />
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-exclamation-triangle fa-stack-2x"></i>
+                                </span>
                             {% elif item.missed %}
-                                <img title="{{ item.name }}" src="../static/images/x.png" />
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-times-circle fa-stack-2x"></i>
+                                </span>
                             {% else %}
-                                <img title="{{ item.name }}" src="../static/images/checkbox_unchecked.png" />
+                                <span class="fa-stack fa-lg">
+                                  <i class="fa fa-square-o fa-stack-2x"></i>
+                                </span>
                             {% endif %}
                         </td>
                     {% endfor %}
