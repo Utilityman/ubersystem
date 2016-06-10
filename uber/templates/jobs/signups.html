@@ -1,22 +1,28 @@
 {% extends "base-admin.html" %}
-{% block title %}Shifts{% endblock %}
+
+{% block title %}
+    Shifts
+{% endblock title %}
+
 {% block content %}
 
 {% include "jobs/main_menu.html" %}
 
 {% if c.POST_CON and checklist.relevant %}
-    <div class="center">
-        {% if checklist.completed %}
-            You've already indicated that you've marked all of the shifts you can remember.  Don't forgot to also mark non-shift hours as needed.
-        {% else %}
-            <a href="#" onClick="$('#checkoff').show(); return false;">I've marked everything I can remember.</a>
-            <form id="checkoff" style="display:none" method="post" action="../dept_checklist/mark_item_complete">
-            {% csrf_token %}
+    {% if checklist.completed %}
+        You've already indicated that you've marked all of the shifts you can remember.  Don't forgot to also mark non-shift hours as needed.
+    {% else %}
+        <a href="#" onClick="$('#checkoff').show(); return false;">
+            I've marked everything I can remember.
+        </a>
+        <form id="checkoff" method="post" action="../dept_checklist/mark_item_complete">
+        {% csrf_token %}
             <input type="hidden" name="slug" value="{{ checklist.conf.slug }}" />
-            <input type="submit" value="I've marked everything I remember" />
-            </form>
-        {% endif %}
-    </div>
+            <button type="submit">
+                I've marked everything I remember
+            </button>
+        </form>
+    {% endif %}
 {% endif %}
 
 <script>SHOW_FULL_JOBS = true;</script>

@@ -5,20 +5,18 @@
     };
 </script>
 
-<table style="text-align:center">
+<table>
 <tr>
-    <td width="50%">
-        <select id="location" style="font-size:14pt ; font-weight:bold" onChange="mainMenuDropdownChanged()">
+    <td>
+        <select id="location" onChange="mainMenuDropdownChanged()">
             <option>All</option>
             {% options c.JOB_LOCATION_OPTS location %}
         </select>
     </td>
-    <td width="50%">
-        <select id="page" style="font-size:14pt ; font-weight:bold" onChange="mainMenuDropdownChanged()">
+    <td>
+        <select id="page" onChange="mainMenuDropdownChanged()">
             {% options c.JOB_PAGE_OPTS c.PAGE %}
         </select>
     </td>
 </tr>
 </table>
-
-<br/>

@@ -1,15 +1,13 @@
 
-<div style="position:fixed ; top:25% ; right: 2% ; text-align:right">
-    <b>Assign someone to any of these positions:</b> <br/>
+    <strong>Assign someone to any of these positions:</strong>
     <select id="attendee">
         <option value="">Select a volunteer</option>
         {% for attendee in attendees %}
             <option value="{{ attendee.id }}">{{ attendee.full_name }}</option>
         {% endfor %}
     </select>
-</div>
 
-<table id="jobs" style="width:66%"></table>
+<table id="jobs"></table>
 
 <script>
     $(setupRatingClickHandler);
