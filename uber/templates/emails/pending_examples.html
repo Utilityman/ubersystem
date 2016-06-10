@@ -1,13 +1,19 @@
 {% extends "base-admin.html" %}
-{% block title %}Example Automated Emails{% endblock %}
+
+{% block title %}
+    Example Automated Emails
+{% endblock title %}
+
 {% block content %}
 
-<h2> {{ subject }} </h2>
+<h1>
+    {{ subject }}
+</h1>
 
-<div class="center">
-    <a href="pending">Return to pending email list</a>
-</div>
-<br/>
+    <a href="pending">
+        Return to pending email list
+    </a>
+
 
 {% if examples %}
     The following are some examples of the {{ count }} emails that will be sent once this email is approved:
@@ -16,8 +22,16 @@
 {% endif %}
 
 {% for url, email in examples %}
-    {% if url %}<h3><a href="{{ url }}">Source</a></h3>{% endif %}
-    <pre style="white-space:pre-wrap">{{ email }}</pre>
+    {% if url %}
+        <h3>
+            <a href="{{ url }}">
+                Source
+            </a>
+        </h3>
+    {% endif %}
+    <pre>{
+        { email }}
+    </pre>
 {% endfor %}
 
-{% endblock %}
+{% endblock content %}

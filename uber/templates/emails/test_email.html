@@ -1,31 +1,39 @@
 {% extends "base-admin.html" %}
-{% block title %}Test email sending{% endblock %}
+
+{% block title %}
+    Test Email Sending
+{% endblock title %}
+
 {% block content %}
 
-<h2>Send a test email from RAMS. Please use with care.</h2>
+<h1>
+    Send a test email from RAMS. Please use with care.
+</h1>
 
-<form action="test_email" method="POST">
-    <table border="0">
-        <tr>
-            <td>To:</td>
-            <td><input size="50" type="text" name="to_address" value="{{to_address}}" /></td>
-        </tr>
-        <tr>
-            <td>From:</td>
-            <td><input size="50" type="text" name="from_address" value="{{from_address}}" /></td>
-        </tr>
-        <tr>
-            <td>Subject:</td>
-            <td><input size="50" type="text" name="subject" value="{{subject}}" /><br/></td>
-        </tr>
-    </table>
-
-    Body:<br/>
-    <textarea cols=100 rows=20 name="body">{{body}}</textarea>
-
-    <br/><br/>
-    <input type="submit" value="submit" name="submit">
-
+<form action="test_email" method="post">
+    <ul>
+        <li>
+            <label for="to_address">To:</label>
+            <input type="email" id="to_address" name="to_address" value="{{to_address}}">
+        </li>
+        <li>
+            <label for="from_address">From:</label>
+            <input type="email" id="from_address" name="from_address" value="{{from_address}}">
+        </li>
+        <li>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" value="{{subject}}">
+        </li>
+        <li>
+            <label for="body">Message Body:</label>
+            <textarea id="body" name="body">{{body}}</textarea>
+        </li>
+        <li>
+            <button type="submit">
+                Send
+            </button>
+        </li>
+    </ul>
 </form>
 
 {% endblock %}

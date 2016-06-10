@@ -1,14 +1,27 @@
 {% extends "base-admin.html" %}
-{% block title %}Sent Emails{% endblock %}
+
+{% block title %}
+    Sent Emails
+{% endblock title %}
+
 {% block content %}
 
-<h2>Emails Sent to {{ emails.0.rcpt_name }} ({{ emails.0.dest }})</h2>
+<h1>
+    Emails Sent to {{ emails.0.rcpt_name }} ({{ emails.0.dest }})
+</h1>
 
-<div style="text-align:center"><a href="index">Go Back</a></div>
+<a href="index">
+    Go Back
+</a>
 
 {% for email in emails  %}
-    <h3> {{ email.subject }} ({{ email.when|full_datetime }}) </h3>
-    <div style="font-family:courier">{{ email.html }}</div>
+    <h3>
+        {{ email.subject }} ({{ email.when|full_datetime }})
+    </h3>
+
+    <p>
+        {{ email.html }}
+    </p>
 {% endfor %}
 
-{% endblock %}
+{% endblock content %}
