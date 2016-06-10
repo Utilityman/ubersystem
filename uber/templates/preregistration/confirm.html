@@ -1,9 +1,10 @@
 {% extends "./preregistration/preregbase.html" %}
-{% block title %}Confirm Your Details{% endblock %}
-{% block backlink %}{% endblock %}
-{% block content %}
 
-<div class="masthead"></div>
+{% block title %}
+    Confirm Your Details
+{% endblock title %}
+
+{% block content %}
 
 <script type="text/javascript">
     $(function(){
@@ -22,27 +23,23 @@
     });
 </script>
 
-<div class="panel panel-default">
-<form method="post" action="confirm" class="form-horizontal">
+<form method="post" action="confirm">
 {% csrf_token %}
 <input type="hidden" name="id" value="{{ attendee.id }}" />
 <input type="hidden" name="return_to" value="{{ return_to }}" />
 <input type="hidden" name="undoing_extra" value="{{ undoing_extra }}" />
 
 {% if attendee.amount_unpaid and c.HTTP_METHOD == 'GET' %}
-    <br/>
-    <div class="form-group">
-        <div class="col-sm-6 col-sm-offset-2 warning">
-            You currently have an outstanding balance of ${{ attendee.amount_unpaid }}{% if attendee.amount_extra %} due to having requested
-            registration add-ons and then not completing the payment form{% endif %}.  Please either
-            <a href="attendee_donation_form?id={{ attendee.id }}">click here</a> to pay, or alter your registration below to
-            eliminate whichever addons you've decided not to select.
-        </div>
+    <div class="warning">
+        You currently have an outstanding balance of ${{ attendee.amount_unpaid }}{% if attendee.amount_extra %} due to having requested
+        registration add-ons and then not completing the payment form{% endif %}.  Please either
+        <a href="attendee_donation_form?id={{ attendee.id }}">click here</a> to pay, or alter your registration below to
+        eliminate whichever addons you've decided not to select.
     </div>
 {% endif %}
 
-<div class="form-group" id="badge-types">
-    <label class="col-sm-2 control-label">Badge Level</label>
+<div id="badge-types">
+    <label>Badge Level</label>
 </div>
 
 {% include "regform.html" %}

@@ -1,0 +1,46 @@
+body
+  {
+  background-color: whitesmoke;
+  background-image: url("http://www.transparenttextures.com/patterns/subtle-grey.png");
+  }
+
+h1
+  {
+  margin: 0;
+  font-size: 3vw;
+  }
+
+h3
+  {
+  font-size: 1.5vw;
+  }
+
+footer.page-footer
+  {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 20px;
+  background-color: #eed202;
+  background-image: url('../../static/images/caution_stripe.png');
+  box-shadow: inset 0px 8px 10px 4px whitesmoke;
+  }
+
+footer p
+  {
+  position: fixed;
+  bottom: 6px;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 0.2em;
+  padding-right: 0.5em;
+  color: white;
+  font-size: 200%;
+  text-align: right;
+  vertical-align: middle;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #000,
+                1px -1px 0 #000,
+               -1px 1px 0 #000,
+                1px 1px 0 #000;
+  }
