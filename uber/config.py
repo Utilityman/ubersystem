@@ -104,6 +104,7 @@ class Config(_Overridable):
 
     def get_attendee_price(self, dt=None):
         price = self.INITIAL_ATTENDEE
+        price_at_con = False
         if self.PRICE_BUMPS_ENABLED:
 
             for day, bumped_price in sorted(self.PRICE_BUMPS.items()):
@@ -111,7 +112,9 @@ class Config(_Overridable):
                     price = bumped_price
                     # If we set a price during the event, it should be used regardless of badge sales
                     if c.EPOCH >= day >= c.ESCHATON:
-                        return price
+                        price_at_con = True
+            if price_at_con:
+                return price
 
                 # Only check bucket-based pricing if we're not checking an existing badge AND
                 # we don't have hardcore_optimizations_enabled config on.
